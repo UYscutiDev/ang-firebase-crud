@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Firestore, collection, addDoc, collectionData, doc, updateDoc } from '@angular/fire/firestore';
+import { Firestore, collection, addDoc, collectionData, doc, updateDoc, deleteDoc } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -36,8 +36,7 @@ export class AppComponent {
     this.userData = collectionData(collectionInstance);
   }
 
-  updateData(id: any) {
-    // console.log(id);
+  updateData(id: string) {
     const docInstance = doc(this.firestore, 'users', id);
     const updateData = {
       name:'updatedName'
@@ -49,6 +48,15 @@ export class AppComponent {
       .catch((err) => {
         console.log(err);
     })
-    console.log(docInstance)
+  }
+
+  deleteData(id: string) { 
+    const docInstance = doc(this.firestore, 'users', id);
+    deleteDoc(docInstance).then(() => {
+      console.log('Data Deleted');
+    })
+      .catch((err) => {
+        console.log(err);
+    })
   }
 }

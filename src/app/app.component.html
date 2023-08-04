@@ -11,5 +11,6 @@
   <li *ngFor="let data of allUsers">
     {{data.name}} / {{data.email}}
     <button (click)="updateData(data.id)">Edit</button>
+    <button (click)="deleteData(data.id)">Delete</button>
   </li>
 </ul>
