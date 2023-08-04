@@ -8,7 +8,8 @@
   <button type="submit">Save Data</button>
 </form>
 <ul>
-  <li *ngFor="let data of userData | async">
+  <li *ngFor="let data of allUsers">
     {{data.name}} / {{data.email}}
+    <button (click)="updateData(data.id)">Edit</button>
   </li>
 </ul>
